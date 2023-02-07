@@ -16,51 +16,73 @@ namespace DataEmploy.Repositories.Data
 {
     public class AccountsRepository
     {
-        private readonly AppDbContext context;
         private IConfiguration _config;
-        public AccountsRepository(AppDbContext context, IConfiguration config)
+        private readonly AppDbContext context;
+        public AccountsRepository(IConfiguration config, AppDbContext context  )
         {
-            this.context = context;
             _config = config;
+            this.context = context;
         }
 
-
-        public async Task<string> Login(AccountsVM accountsVM)
+        DynamicParameters parameters = new DynamicParameters();
+        public UserTokenVM Login(AccountsVM accountVM)
         {
-            var user = await context.AccountRoles
-                .Where(ar => ar.Accounts.Employees.Email == accountsVM.Email
-                && ar.Accounts.Password == accountsVM.Password)
-                .Include(r => r.Roles).Include(e => e.Accounts.Employees)
-                .FirstOrDefaultAsync();
-
-            if (accountsVM.Password == null)
+            using (SqlConnection connection = new SqlConnection(_config["ConnectionStrings:API"]))
             {
-                return "400";
-            }
-            else if (user != null)
-            {
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
-                var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+                var spCheckPassword = "SP_UsersCheckPassword";
+                parameters.Add("@Email", accountVM.Email);
+                var userPassword = connection.QueryFirstOrDefault<Accounts>(spCheckPassword, parameters, commandType: CommandType.StoredProcedure);
+                if (userPassword == null)
+                {
+                    return null;
+                }
 
-                var claims = new[] {
-                    new Claim("Email", user.Accounts.Employees.Email),
-                    new Claim("roles", user.Roles.Name)
-                   };
+                bool verified = BCrypt.Net.BCrypt.Verify(accountVM.Password, userPassword.Password);
+                if (!verified)
+                {
+                    return null;
+                }
 
-                var token = new JwtSecurityToken(_config["JWT:Issuer"],
-                    _config["JWT:Audience"],
-                    claims,
-                    expires: DateTime.Now.AddMinutes(15),
-                    signingCredentials: credentials);
+                parameters = new DynamicParameters();
+                var spUserToken = "SP_UsersGetLoginTokenData";
+                parameters.Add("@NIK", userPassword.NIK);
+                var userToken = connection.QuerySingleOrDefault<UserTokenVM>(spUserToken, parameters, commandType: CommandType.StoredProcedure);
+                if (userPassword == null)
+                {
+                    return null;
+                }
 
-                var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-                return jwt;
-            }
-            else
-            {
-                return "404";
+                string token = GenerateJwtToken(userToken);
+                userToken.Token = token;
+                return userToken;
             }
         }
+
+        private string GenerateJwtToken(UserTokenVM userToken)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("NIK", userToken.NIK),
+                new Claim("Email", userToken.Email),
+                new Claim("Role", userToken?.RoleName)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddDays(7),
+                signingCredentials: creds
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+
 
         //public string Generate(AccountVM accountVM)
         //{

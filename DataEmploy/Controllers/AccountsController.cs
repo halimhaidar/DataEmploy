@@ -19,18 +19,17 @@ namespace DataEmploy.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<ActionResult> Login(AccountsVM accountsVM)
+        public virtual ActionResult Insert(AccountsVM loginVM)
         {
-            var login = await repository.Login(accountsVM);
-            if (login != null)
+            var insert = repository.Login(loginVM);
+            if (insert != null)
             {
-                return StatusCode(200, new { status = HttpStatusCode.OK, message = "Login Berhasil", Data = login });
+                return StatusCode(200, new { status = HttpStatusCode.OK, message = "Berhasil Login", Data = insert });
             }
-            else if (login == "400")
+            else
             {
-                return StatusCode(400, new { status = HttpStatusCode.NotFound, message = "Password Salah" });
+                return StatusCode(500, new { status = HttpStatusCode.InternalServerError, message = "Gagal Login, username atau password salah.", Data = insert });
             }
-            return StatusCode(404, new { status = HttpStatusCode.NotFound, message = "Login Gagal" });
         }
     }
 

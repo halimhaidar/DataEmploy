@@ -1,4 +1,6 @@
-﻿using DataEmploy.Repositories.Data;
+﻿using DataEmploy.Base;
+using DataEmploy.Models;
+using DataEmploy.Repositories.Data;
 using DataEmploy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -7,14 +9,14 @@ namespace DataEmploy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeesController : BaseController<Employees, EmployeesRepository, string>
     {
         private readonly EmployeesRepository repository;
-        public EmployeesController(EmployeesRepository repository)
+        public EmployeesController(EmployeesRepository repository) : base(repository)
         {
             this.repository = repository;
         }
-        [HttpGet]
+       /* [HttpGet]
         public virtual ActionResult Get()
         {
             var get = repository.Get();
@@ -26,9 +28,10 @@ namespace DataEmploy.Controllers
             {
                 return StatusCode(200, new { status = HttpStatusCode.NotFound, message = get.Count() + " Data Ditemukan", Data = get });
             }
-        }
+        }*/
 
         [HttpPost]
+        [Route("Register")]
         public virtual ActionResult Insert(RegisterVM registerVM)
         {
             var insert = repository.RegisterVM(registerVM);

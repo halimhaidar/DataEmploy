@@ -72,3 +72,5 @@ C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\obj\Debug\net6.0\refint
 C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\obj\Debug\net6.0\DataEmploy.pdb
 C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\obj\Debug\net6.0\DataEmploy.genruntimeconfig.cache
 C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\obj\Debug\net6.0\ref\DataEmploy.dll
+C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\bin\Debug\net6.0\Elasticsearch.Net.dll
+C:\Users\abdul.haidar\source\repos\DataEmploy\DataEmploy\bin\Debug\net6.0\Nest.dll
