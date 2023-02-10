@@ -1,25 +1,24 @@
-﻿
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Employees";
 }
-<div class="container">
+<div class="container-fluid">
 
-    <div class="card border-light pt-3 mb-3" style="max-width: auto;">
+
+    <div class="card border-light mt-5">
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <h2 class="text-grey">Employees List</h2>
+                    <h2 class="text-dark">Employees List</h2>
                 </div>
                 <div class="col-6 text-end">
-                    <a asp-controller="Category" asp-action="Create" class="btn btn-primary btn-sm ">
-                        <i class="bi bi-plus-circle"></i> &nbsp; Create New Category
+                    <a data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm mt-2">
+                        <i class="bi bi-plus-circle"></i> &nbsp; Add New Employees
                     </a>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered" id="tbEmployee" width="100%" cellspacing="0">
+        <div class="card-body table-responsive">
+            <table class="table table-hover " id="tbEmployee" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>NO</th>
@@ -30,7 +29,7 @@
                         <th>EMAIL</th>
                         <th>SALARY</th>
                         <th>GENDER</th>
-                       @* <th>USERNAME</th>
+                        @* <th>USERNAME</th>
                         <th>DEPARTMENT</th>
                         <th>ROLE</th>*@
                         <th>ACTION</th>
@@ -41,6 +40,109 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Create Data Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="firstNameInput" placeholder="">
+                                <label for="firstNameInput">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="lastNameInput" placeholder="">
+                                <label for="lastNameInput">Last Name</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="phoneInput" placeholder="">
+                                <label for="phoneInput">Phone</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="birthDateInput" placeholder="">
+                                <label for="birthDateInput">Birth Date</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="salaryInput" placeholder="">
+                                <label for="salaryInput">Salary</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="genderInput">
+                                    <option disabled>-</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                                <label for="genderInput">Gender</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                                <label for="emailInput">Email address</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                                <label for="passwordInput">Password</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="managerInput">
+                                    <option disabled>-</option>
+                                </select>
+                                <label for="managerInput">Manager</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="departmentInput">
+                                    <option disabled>-</option>
+                                </select>
+                                <label for="departmentInput">Department</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" onclick="Save()">Save changes</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts{

@@ -8,46 +8,39 @@ namespace DataEmploy.Repositories
         where Entity : class
         where Context : AppDbContext
     {
-        private readonly AppDbContext context;
+        private readonly AppDbContext appDbContext;
         private readonly DbSet<Entity> entities;
-        public GeneralRepository(AppDbContext context)
+        public GeneralRepository(AppDbContext appDbContext)
         {
-            this.context = context;
-            entities = context.Set<Entity>();
+            this.appDbContext = appDbContext;
+            entities = appDbContext.Set<Entity>();
+        }
+        public int Create(Entity entity)
+        {
+            entities.Add(entity);
+            return appDbContext.SaveChanges();
         }
 
         public int Delete(Key key)
         {
-            var findKey = entities.Find(key);
-            if (findKey != null)
-            {
-                entities.Remove(findKey);
-                return context.SaveChanges();
-            }
-            return 404;
+            appDbContext.Remove(entities.Find(key));
+            return appDbContext.SaveChanges();
         }
 
-        public IEnumerable<Entity> Get()
+        public IEnumerable<Entity> Read()
         {
             return entities.ToList();
         }
 
-        public Entity Get(Key key)
+        public Entity Read(Key key)
         {
             return entities.Find(key);
         }
 
-        public virtual int Insert(Entity entity)
-        {
-            entities.Add(entity);
-            var insert = context.SaveChanges();
-            return insert;
-        }
-
         public int Update(Entity entity)
         {
-            context.Entry(entity).State = EntityState.Modified;
-            return context.SaveChanges();
+            appDbContext.Entry(entity).State = EntityState.Modified;
+            return appDbContext.SaveChanges();
         }
     }
 }

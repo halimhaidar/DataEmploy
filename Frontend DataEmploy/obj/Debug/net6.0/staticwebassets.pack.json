@@ -3289,8 +3289,24 @@
       "PackagePath": "staticwebassets\\js\\EmployeeScript.js"
     },
     {
+      "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\LoginScript.js",
+      "PackagePath": "staticwebassets\\js\\LoginScript.js"
+    },
+    {
       "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\lib\\DataTable\\dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\lib\\DataTable\\dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\lib\\DataTable\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\lib\\DataTable\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\lib\\DataTable\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\lib\\DataTable\\jquery.dataTables.min.js"
     },
     {
       "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\lib\\bootstrap\\LICENSE",

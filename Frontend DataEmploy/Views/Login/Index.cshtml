@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<div class="container">
+    <div class="card border-secondary mx-auto mt-5" style="max-width: 20rem;">
+        <div class="card-header text-center">
+            <h2 class="text-dark">Login</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                    <label for="emailInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                    <label for="passwordInput">Password</label>
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-outline-primary" onclick="Login()">Login</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/LoginScript.js"></script>
+}
+
