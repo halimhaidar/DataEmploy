@@ -29,7 +29,11 @@ namespace DataEmploy.Contexts
                 .WithMany(b => b.AccountRoles)
                 .HasForeignKey(a => a.Role_Id);
         }
-      
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
 
     }
 }

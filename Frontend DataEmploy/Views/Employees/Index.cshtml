@@ -8,30 +8,33 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <h2 class="text-dark">Employees List</h2>
+                    <h2 class="">Employees List</h2>
                 </div>
                 <div class="col-6 text-end">
-                    <a data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm mt-2">
+                    <button data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm mt-2" onclick="select()">
                         <i class="bi bi-plus-circle"></i> &nbsp; Add New Employees
-                    </a>
+                    </button>
+                   @* <a data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm mt-2" onclick="select()">
+                        
+                    </a>*@
                 </div>
             </div>
         </div>
         <div class="card-body table-responsive">
-            <table class="table table-hover " id="tbEmployee" width="100%" cellspacing="0">
-                <thead>
+            <table class="table table-hover table-bordered" id="tbEmployee" width="100%" cellspacing="0">
+                <thead class="table-active">
                     <tr>
                         <th>NO</th>
                         <th>NIK</th>
                         <th>NAME</th>
                         <th>PHONE</th>
-                        <th>BIRTH DATE</th>
-                        <th>EMAIL</th>
+                        <th>BIRTHDATE</th>
                         <th>SALARY</th>
-                        <th>GENDER</th>
-                        @* <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>GENDER</th> 
+                        <th>ROLE</th> 
                         <th>DEPARTMENT</th>
-                        <th>ROLE</th>*@
+                        <th>MANAGER</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
@@ -46,24 +49,24 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-dark">Create Data Employee</h5>
+                <h5 id="addModalLabel" class="modal-title text-dark">Create Data Employee</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"></span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-
+                    <input type="hidden" class="form-control" id="nikInput" placeholder="">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="firstNameInput" placeholder="">
+                                <input type="text" class="form-control" id="firstNameInput" placeholder="First Name">
                                 <label for="firstNameInput">First Name</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="lastNameInput" placeholder="">
+                                <input type="text" class="form-control" id="lastNameInput" placeholder="Last Name">
                                 <label for="lastNameInput">Last Name</label>
                             </div>
                         </div>
@@ -72,13 +75,13 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="phoneInput" placeholder="">
+                                <input type="text" class="form-control" id="phoneInput" placeholder="Phone Number">
                                 <label for="phoneInput">Phone</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="birthDateInput" placeholder="">
+                                <input type="date" class="form-control" id="birthDateInput">
                                 <label for="birthDateInput">Birth Date</label>
                             </div>
                         </div>
@@ -86,16 +89,16 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="salaryInput" placeholder="">
+                                <input type="text" class="form-control" id="salaryInput" placeholder="Salary">
                                 <label for="salaryInput">Salary</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="genderInput">
-                                    <option disabled>-</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="">Choose Gender</option>
+                                    <option value="0" >Male</option>
+                                    <option value="1">Female</option>
                                 </select>
                                 <label for="genderInput">Gender</label>
                             </div>
@@ -119,26 +122,24 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-floating mb-3">
-                                <select class="form-select" id="managerInput">
-                                    <option disabled>-</option>
+                            <div class="form-floating mb-3">                                
+                                <select class="form-select" id="departmentInput">
                                 </select>
-                                <label for="managerInput">Manager</label>
+                                <label for="departmentInput">Department</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="departmentInput">
-                                    <option disabled>-</option>
+                                <select class="form-select" id="managerInput">
                                 </select>
-                                <label for="departmentInput">Department</label>
+                                <label for="managerInput">Manager</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-sm" onclick="Save()">Save changes</button>
+                <button id="buttonSubmit" type="button" class="btn btn-primary btn-sm" onclick="Save()">Save changes</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

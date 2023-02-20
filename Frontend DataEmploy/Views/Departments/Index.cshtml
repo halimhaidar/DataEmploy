@@ -1,95 +1,73 @@
 ﻿@{
-    ViewData["Title"] = "Department";    
+    ViewData["Title"] = "Department";
 }
 
+<div class="container-fluid">
 
 
-<!-- Main Content -->
-<div id="content">
-
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        @*<h1 class="h3 mb-2 text-gray-800">Management Department</h1>*@
-
-        <!-- Modal -->
-        <div class="modal fade " id="deptModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="deptModalLabel">New Department</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="hidden" class="form-control" id="idDepartment" placeholder="" readonly="">
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="deptName">Department Name</label>
-                                    <input required="" type="text" class="form-control" id="deptName" placeholder="Enter Department Name">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="spvName">Supervisor Name</label>
-                                    <select required="" id="spvName" class="form-control">
-                                        <option value="" disabled selected>Choose Supervisor</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" id="buttonSubmit" onclick="Create()">Save</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+    <div class="card border-light mt-5">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="">Departments List</h2>
+                </div>
+                <div class="col-6 text-end">
+                    <a data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm mt-2">
+                        <i class="bi bi-plus-circle"></i> &nbsp; Add New Department
+                    </a>
                 </div>
             </div>
         </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover table-bordered " id="tbEmployee" width="100%" cellspacing="0">
+                <thead class="table-active">
+                    <tr>
+                        <th>NO</th>                        
+                        <th>DEPARTMENT NAME</th>
+                        <th>MANAGER NAME</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
 
-        <!-- DataTales  -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="my-auto ml-2">
-                        <h1 class="h3 mb-2 font-weight-bold text-white">Management Department</h1>
-                    </div>
-                    <div class="ml-auto">
-                        <button id="addButton" style="color: aliceblue; background-color: #059299; " type="button" class="btn" onclick="select();" data-toggle="modal" data-target="#deptModal"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="tbDepartment" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th width="40%">DEPARTMENT NAME</th>
-                                <th width="40%">SUPERVISIOR</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-
-                    </table>
-                </div>
-            </div>
+            </table>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
 
 </div>
-<!-- End of Main Content -->
+
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="addModalLabel" class="modal-title text-dark">Create Data Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="departmentIdInput" placeholder="">
+                <div class="form-group">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="departmentNameInput" placeholder="">
+                        <label for="firstNameInput">Department Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="managerInput">
+                            
+                        </select>
+                        <label for="managerInput">Manager</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="buttonSubmit" type="button" class="btn btn-primary btn-sm" onclick="Save()">Save changes</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
 
     <script src="~/js/DepartmentScript.js"></script>

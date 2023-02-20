@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Login";
+    Layout = "~/Views/Layout/LoginLayout.cshtml";
 }
-<div class="container">
+
     <div class="card border-secondary mx-auto mt-5" style="max-width: 20rem;">
         <div class="card-header text-center">
             <h2 class="text-dark">Login</h2>
@@ -19,10 +20,10 @@
                 </div>
 
             </div>
-            <button type="button" class="btn btn-outline-primary" onclick="Login()">Login</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="Login()">Login</button>
         </div>
     </div>
-</div>
+
 
 @section Scripts{
     <script src="~/js/LoginScript.js"></script>

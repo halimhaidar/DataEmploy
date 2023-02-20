@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K09xdWkWVuRQbk2LtG2rTwJW1rUE4ovRMSOEJ3dlbWE=",
+  "Hash": "PTFjjpwcnYYbeGhvOcmJkaRwgWJzh/mHCwq8TEroRm4=",
   "Source": "Frontend DataEmploy",
   "BasePath": "_content/Frontend DataEmploy",
   "Mode": "Default",
@@ -13989,6 +13989,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\DepartmentScript.js",
+      "SourceId": "Frontend DataEmploy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\",
+      "BasePath": "_content/Frontend DataEmploy",
+      "RelativePath": "js/DepartmentScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\DepartmentScript.js"
     },
     {
       "Identity": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\EmployeeScript.js",

@@ -33,6 +33,16 @@ namespace DataEmploy.Repositories.Data
             throw new NotImplementedException();
         }
 
+        public virtual IEnumerable<EmployeesVM> GetAll()
+        {
+            using (SqlConnection connection = new SqlConnection(_configuration["ConnectionStrings:API"]))
+            {
+                var spName = "SP_EmployeesGet";
+                var res = connection.Query<EmployeesVM>(spName, parameters, commandType: CommandType.StoredProcedure);
+                return res;
+            }
+        }
+
         public virtual int RegisterVM(RegisterVM registerVM)
         {
             using (SqlConnection connection = new SqlConnection(_configuration["ConnectionStrings:API"]))

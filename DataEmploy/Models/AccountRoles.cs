@@ -9,10 +9,12 @@ namespace DataEmploy.Models
     {
         [ForeignKey("Roles")]
         public int Role_Id { get; set; }
-        public Roles Roles { get; set; }
+        [JsonIgnore]
+        public virtual Roles Roles { get; set; }
 
         [ForeignKey("Accounts")]
         public string NIK { get; set; }
-        public Accounts Accounts { get; set; }
+        [JsonIgnore]
+        public virtual Accounts Accounts { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace DataEmploy.Models
         public string? Name { get; set; }
 
         // Many to many
+        [JsonIgnore]
         public virtual ICollection<AccountRoles>? AccountRoles { get; set; }
     }
 }

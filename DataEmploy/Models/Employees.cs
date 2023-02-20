@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using System.Security.Principal;
 
+
 namespace DataEmploy.Models
 {
     public class Employees
@@ -22,16 +23,20 @@ namespace DataEmploy.Models
         public Gender Gender { get; set; }
 
         // Self Reference of Table Employee - One To Many
-        public Employees? Manager { get; set; }
+        [JsonIgnore]
+        public virtual Employees? Manager { get; set; }
         [ForeignKey("Manager")]
         public string? Manager_Id { get; set; }
 
         // Many employees have one departement - Many To One
-        public Departments? Departements { get; set; }
+        [JsonIgnore]
+        public virtual Departments? Departements { get; set; }
         [ForeignKey("Departements")]
-        public int? Departement_Id { get; set; }                              
+        public int? Departement_Id { get; set; }
+
         // One employee have one account  - One To One
-        public Accounts? Account { get; set; }
+        [JsonIgnore]
+        public virtual Accounts? Account { get; set; }
 
     }
     public enum Gender 

@@ -3285,6 +3285,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\DepartmentScript.js",
+      "PackagePath": "staticwebassets\\js\\DepartmentScript.js"
+    },
+    {
       "Id": "C:\\Users\\abdul.haidar\\source\\repos\\DataEmploy\\Frontend DataEmploy\\wwwroot\\js\\EmployeeScript.js",
       "PackagePath": "staticwebassets\\js\\EmployeeScript.js"
     },

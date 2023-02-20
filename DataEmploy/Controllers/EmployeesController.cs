@@ -16,19 +16,7 @@ namespace DataEmploy.Controllers
         {
             this.repository = repository;
         }
-       /* [HttpGet]
-        public virtual ActionResult Get()
-        {
-            var get = repository.Get();
-            if (get.Count() != 0)
-            {
-                return StatusCode(200, new { status = HttpStatusCode.OK, message = get.Count() + " Data Ditemukan", Data = get });
-            }
-            else
-            {
-                return StatusCode(200, new { status = HttpStatusCode.NotFound, message = get.Count() + " Data Ditemukan", Data = get });
-            }
-        }*/
+      
 
         [HttpPost]
         [Route("Register")]
@@ -48,6 +36,22 @@ namespace DataEmploy.Controllers
                 return StatusCode(500, new { status = HttpStatusCode.InternalServerError, message = "Gagal Memasukkan Data", Data = insert });
             }
         }
+
+        [HttpGet]
+        [Route("All")]
+        public virtual ActionResult Get()
+        {
+            var get = repository.GetAll();
+            if (get.Count() != 0)
+            {
+                return StatusCode(200, new { status = HttpStatusCode.OK, message = get.Count() + " Data Ditemukan", Data = get });
+            }
+            else
+            {
+                return StatusCode(200, new { status = HttpStatusCode.NotFound, message = get.Count() + " Data Ditemukan", Data = get });
+            }
+        }
+
 
     }
 }
